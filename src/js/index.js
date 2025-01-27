@@ -1,46 +1,45 @@
-/*Este codigo foi feito com o intuito de ESTUDO, então haverão comentarios para analise futura.
-
-OBJETIVO 1 - quando clicarmos na seta de avançar temos que mostrar o proximo 
-cartao da lista
-  - passo 1 - dar um jeito de pegar o elemento HTML da seta avancar
-   - passo 2 - dar um jeito de identificar o clique do usuário na seta avançar
-    - passo 3 - fazer aparecer o próximo cartão da lista 
-     - passo 4 - buscar o cartão que esta selecionado e esconder*/
-     
-//PASSO 1 - dar um jeito de pegar o elemento HTML da seta voltar
 const btnAvancar = document.getElementById("btn-avancar");
 const btnVoltar = document.getElementById("btn-voltar");
 const cartoes = document.querySelectorAll(".cartao");
 let cartaoAtual = 0;
-// objeto.metodo(objeto ja existente), este comando vai mostrar informações importantes.
 
-//PASSO 2 - dar um jeito de identificar o clique do usuário na seta voltar
+cartoes.forEach(cartao => {
+  cartao.addEventListener("click", function() {
+    const cartaVirada = cartao.querySelector(".carta-virada");
+
+    // virar o cartão
+    cartao.classList.toggle("virar");
+    // mostrar o fundo da carta
+    cartaVirada.classList.toggle("mostrar-fundo-carta");
+
+    const descricao = cartao.querySelector(".descricao");
+    descricao.classList.toggle("esconder");
+  });
+});
+
 btnAvancar.addEventListener("click", function () {
   if (cartaoAtual === cartoes.length - 1) return;
 
-  //PASSO 4
-  EsconderCartaoSelecionado();
+  esconderCartaoSelecionado();
 
-  //PASSO 3
   cartaoAtual++;
-  MostrarCartao();
+  mostrarCartao(cartaoAtual);
 });
 
-//OBJETIVO 2 - Quando clicar na seta voltar, mostra o cartão anteriro da lista.
 btnVoltar.addEventListener("click", function () {
   if (cartaoAtual === 0) return;
 
-  const cartaoSelecionado = document.querySelector(".selecionado");
-  cartaoSelecionado.classList.remove("selecionado");
+  esconderCartaoSelecionado();
 
   cartaoAtual--;
-  MostrarCartao();
+  mostrarCartao(cartaoAtual);
 });
-function MostrarCartao() {
+
+function mostrarCartao(cartaoAtual) {
   cartoes[cartaoAtual].classList.add("selecionado");
 }
 
-function EsconderCartaoSelecionado() {
+function esconderCartaoSelecionado() {
   const cartaoSelecionado = document.querySelector(".selecionado");
   cartaoSelecionado.classList.remove("selecionado");
 }

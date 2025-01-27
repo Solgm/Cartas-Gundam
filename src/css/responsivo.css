@@ -51,3 +51,14 @@
             font-size: 12px;
       }
 }
+
+@media(max-width: 575px){
+  body{
+        justify-content: start;
+        padding-top: 10px;
+        
+  }
+  .cabecalho{
+        font-size: 12px;
+  }
+}
