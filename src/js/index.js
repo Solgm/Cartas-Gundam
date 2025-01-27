@@ -6,33 +6,41 @@ let cartaoAtual = 0;
 cartoes.forEach(cartao => {
   cartao.addEventListener("click", function() {
     const cartaVirada = cartao.querySelector(".carta-virada");
-
-    // virar o cartão
     cartao.classList.toggle("virar");
-    // mostrar o fundo da carta
     cartaVirada.classList.toggle("mostrar-fundo-carta");
-
     const descricao = cartao.querySelector(".descricao");
     descricao.classList.toggle("esconder");
   });
 });
 
+function atualizarBotoes() {
+  if (cartaoAtual === 0) {
+    btnVoltar.style.visibility = "hidden";
+  } else {
+    btnVoltar.style.visibility = "visible";
+  }
+
+  if (cartaoAtual === cartoes.length - 1) {
+    btnAvancar.style.visibility = "hidden";
+  } else {
+    btnAvancar.style.visibility = "visible";
+  }
+}
+
 btnAvancar.addEventListener("click", function () {
   if (cartaoAtual === cartoes.length - 1) return;
-
   esconderCartaoSelecionado();
-
   cartaoAtual++;
   mostrarCartao(cartaoAtual);
+  atualizarBotoes();
 });
 
 btnVoltar.addEventListener("click", function () {
   if (cartaoAtual === 0) return;
-
   esconderCartaoSelecionado();
-
   cartaoAtual--;
   mostrarCartao(cartaoAtual);
+  atualizarBotoes();
 });
 
 function mostrarCartao(cartaoAtual) {
@@ -43,3 +51,5 @@ function esconderCartaoSelecionado() {
   const cartaoSelecionado = document.querySelector(".selecionado");
   cartaoSelecionado.classList.remove("selecionado");
 }
+
+atualizarBotoes();

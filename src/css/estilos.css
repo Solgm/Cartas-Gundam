@@ -3,7 +3,7 @@ body {
   background-image: url(../imagens/jan2023_16.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(px);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -236,7 +236,7 @@ body::-webkit-scrollbar-track {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c08057;
+  background: #8700f5;
 }
 .carta-virada {
 	display: none;
@@ -265,9 +265,17 @@ body::-webkit-scrollbar-track {
 	display: none;
 }
 
-/* .assinatura{
-background-image: url(../imagens/nivel-carta.png);
-align-self:flex-end;
+.assinatura {
+  position: fixed; 
+  bottom: 10px;    
+  left: 10px;     
+  z-index: 1000;   
+}
+
+.assinatura img {
+border-image: url(/src/imagens/SOLGM.png);
+align-self:flex-start;
 display: block;
-background-color: #000;
-} */
+max-width: 200px;
+max-height: 200px;
+}
